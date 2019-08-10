@@ -154,11 +154,16 @@ WORKDIR /var/tmp/build/curl-7.60.0
 # don't do this.
 # I have added HTTP/2 for the kick of it here.
 # 
+# need also to set the default CA locations or
+# CURL_WANTS_CA_BUNDLE_ENV to replace the default value with getenv("CURL_CA_BUNDLE")
+# you can inspect the locations with 
+# /usr/bin/curl-config --ca
+#
 RUN cmake \
         -DCMAKE_BUILD_TYPE=Release \
         -DBUILD_SHARED_LIBS=yes \
 	-DENABLE_ARES=ON \
-	-DUSE_NGHTTP2=ON \
+	-DUSE_NGHTTP2=OFF \
 	-DCMAKE_ENABLE_OPENSSL=ON \
         -H. -Bcmake-out
 RUN cmake --build cmake-out --target install -- -j ${NCPU:-4}
