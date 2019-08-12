@@ -209,9 +209,10 @@ RUN ldconfig
 WORKDIR /var/tmp/build
 
 # modified version with more libraries pre-built
-RUN wget -q https://github.com/alichnewsky/cpp-cmakefiles/tarball/c702e47e5908efba5c619c7b2f1a1d5e4a92484d
-RUN tar -xf c702e47e5908efba5c619c7b2f1a1d5e4a92484d
-WORKDIR /var/tmp/build/alichnewsky-cpp-cmakefiles-c702e47
+RUN wget -q https://github.com/alichnewsky/cpp-cmakefiles/tarball/b2046635c11c043795fba24a47db3c3ea90de6cd
+# expect SHA 256 hash 5ef3f772e8d8d584bddb2f81104ade509502c5eb23fc98ab03eff63a8bb450dd
+RUN tar -xf b2046635c11c043795fba24a47db3c3ea90de6cd
+WORKDIR /var/tmp/build/alichnewsky-cpp-cmakefiles-b204663
 
 #RUN wget -q https://github.com/googleapis/cpp-cmakefiles/archive/v0.1.1.tar.gz
 #RUN tar -xf v0.1.1.tar.gz
