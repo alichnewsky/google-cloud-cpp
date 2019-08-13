@@ -259,7 +259,7 @@ function (gooogleapis_project_create_all_libraries)
                           googleapis-c++::api_annotations_protos
                           googleapis-c++::api_resource_protos
                           googleapis-c++::type_expr_protos)
-    set_property(TARGET googleapis-c++::longrunning_operations
+    set_property(TARGET googleapis-++::longrunning_operations_protos
                  APPEND
                  PROPERTY INTERFACE_LINK_LIBRARIES
                           googleapis-c++::api_annotations_protos
@@ -273,7 +273,7 @@ function (gooogleapis_project_create_all_libraries)
                  PROPERTY INTERFACE_LINK_LIBRARIES
                           googleapis-c++::api_annotations_protos
                           googleapis-c++::api_client_protos
-			  googleapis-c++::longrunning_operations
+			  googleapis-++::longrunning_operations_protos
 			  googleapis-c++::rpc_status_protos)
     set_property(TARGET googleapis-c++::cloud_bigquery_v2_protos
                  APPEND
@@ -285,7 +285,7 @@ function (gooogleapis_project_create_all_libraries)
                  PROPERTY INTERFACE_LINK_LIBRARIES
                           googleapis-c++::api_annotations_protos
                           googleapis-c++::api_client_protos
-			  googleapis-c++::longrunning_operations
+			  googleapis-++::longrunning_operations_protos
 			  googleapis-c++::rpc_status_protos)
     set_property(TARGET googleapis-c++::cloud_kms_v1_protos
                  APPEND
@@ -308,7 +308,7 @@ function (gooogleapis_project_create_all_libraries)
                           googleapis-c++::api_annotations_protos
                           googleapis-c++::api_auth_protos
                           googleapis-c++::api_httpbody_protos
-                          googleapis-c++::longrunning_operations)
+                          googleapis-++::longrunning_operations_protos)
     set_property(TARGET googleapis-c++::cloud_oslogin_v1_protos
                  APPEND
                  PROPERTY INTERFACE_LINK_LIBRARIES
@@ -318,12 +318,12 @@ function (gooogleapis_project_create_all_libraries)
                  PROPERTY INTERFACE_LINK_LIBRARIES
                           googleapis-c++::api_annotations_protos
                           googleapis-c++::api_client_protos
-                          googleapis-c++::longrunning_operations)
+                          googleapis-++::longrunning_operations_protos)
     set_property(TARGET googleapis-c++::cloud_runtimeconfig_v1beta1_protos
                  APPEND
                  PROPERTY INTERFACE_LINK_LIBRARIES
                           googleapis-c++::api_annotations_protos
-                          googleapis-c++::longrunning_operations
+                          googleapis-++::longrunning_operations_protos
 			  googleapis-c++::rpc_status_protos)
     set_property(TARGET googleapis-c++::cloud_scheduler_v1_protos
                  APPEND
@@ -335,7 +335,7 @@ function (gooogleapis_project_create_all_libraries)
                  APPEND
                  PROPERTY INTERFACE_LINK_LIBRARIES
                           googleapis-c++::api_annotations_protos
-                          googleapis-c++::longrunning_operations
+                          googleapis-++::longrunning_operations_protos
 			  googleapis-c++::rpc_status_protos)
     set_property(TARGET googleapis-c++::cloud_tasks_v2_protos
                  APPEND
@@ -356,24 +356,24 @@ function (gooogleapis_project_create_all_libraries)
                           googleapis-c++::api_annotations_protos
                           googleapis-c++::api_client_protos
                           googleapis-c++::api_resource_protos
-                          googleapis-c++::longrunning_operations)
-    set_property(TARGET googleapis-c++::cloud_videointelligence_v1
+                          googleapis-++::longrunning_operations_protos)
+    set_property(TARGET googleapis-c++::cloud_videointelligence_v1_protos
                  APPEND
                  PROPERTY INTERFACE_LINK_LIBRARIES
                           googleapis-c++::api_annotations_protos
                           googleapis-c++::api_client_protos
-                          googleapis-c++::longrunning_operations
+                          googleapis-++::longrunning_operations_protos
                           googleapis-c++::rpc_status_protos)
     set_property(TARGET googleapis-c++::cloud_vision_v1_protos
                  APPEND
                  PROPERTY INTERFACE_LINK_LIBRARIES
                           googleapis-c++::api_annotations_protos
                           googleapis-c++::api_client_protos
-                          googleapis-c++::longrunning_operations
+                          googleapis-++::longrunning_operations_protos
                           googleapis-c++::rpc_status_protos
 			  googleapis-c++::type_color_protos
 			  googleapis-c++::type_latlng_protos)
-    set_property(TARGET googleapis-c++::cloud_datastore_v1_protos
+    set_property(TARGET googleapis-c++::datastore_v1_protos
                  APPEND
                  PROPERTY INTERFACE_LINK_LIBRARIES
                           googleapis-c++::api_annotations_protos
@@ -392,7 +392,7 @@ function (gooogleapis_project_create_all_libraries)
                  PROPERTY INTERFACE_LINK_LIBRARIES
                           googleapis-c++::api_annotations_protos
                           googleapis-c++::api_monitored_resource_protos
-                          googleapis-c++::longrunning_operations
+                          googleapis-++::longrunning_operations_protos
                           googleapis-c++::rpc_status_protos)
     set_property(TARGET googleapis-c++::monitoring_v3_protos
                  APPEND
@@ -401,7 +401,7 @@ function (gooogleapis_project_create_all_libraries)
                           googleapis-c++::api_distribution_protos
                           googleapis-c++::api_metric_protos
                           googleapis-c++::api_monitored_resource_protos
-                          googleapis-c++::longrunning_operations
+                          googleapis-++::longrunning_operations_protos
                           googleapis-c++::rpc_status_protos)
     set_property(TARGET googleapis-c++::pubsub_v1_protos
                  APPEND

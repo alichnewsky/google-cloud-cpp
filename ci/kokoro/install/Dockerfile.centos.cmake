@@ -50,7 +50,7 @@ RUN wget -q https://gitlab.kitware.com/cmake/cmake/-/archive/v3.15.2/cmake-v3.15
 RUN tar -xf cmake-v3.15.2.tar.gz
 WORKDIR /var/tmp/build/cmake-v3.15.2
 # the question here is ./bootstrap or ./bootstrap --system-curl ...
-RUN ./bootstrap && make && make install
+RUN ./bootstrap && make -j ${NCPU:-4} && make install
 RUN ln -s /usr/local/bin/cmake /usr/bin/cmake && \
     ln -s /usr/local/bin/ctest /usr/bin/ctest
 
@@ -117,7 +117,7 @@ RUN cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=yes \
     -H. -Bcmake-out
-RUN cmake --build cmake-out    
+RUN cmake --build cmake-out    --target install -- -j ${NCPU:-4}
 RUN ldconfig
 # ```
 
@@ -193,7 +193,7 @@ RUN cmake \
         -DgRPC_ZLIB_PROVIDER=package \
         -DgRPC_SSL_PROVIDER=package \
         -DgRPC_CARES_PROVIDER=package \
-        -DgRPC_PROTOBUF_PROVIDER=package
+        -DgRPC_PROTOBUF_PROVIDER=package \
 	-H. -Bcmake-out
 RUN cmake --build cmake-out --target install -- -j ${NCPU:-4}
 RUN ldconfig
@@ -251,10 +251,15 @@ RUN cmake --build . --target install
 
 ## [END INSTALL.md]
 
+#
+# The plain make install does not work because the gRPC install
+# Does not install gRPC's pkg-config files...
+#
+
 # Verify that the installed files are actually usable
-WORKDIR /home/build/test-install-plain-make
-COPY ci/test-install /home/build/test-install-plain-make
-RUN make
+#WORKDIR /home/build/test-install-plain-make
+#COPY ci/test-install /home/build/test-install-plain-make
+#RUN make
 
 WORKDIR /home/build/test-install-cmake-bigtable
 COPY ci/test-install/bigtable /home/build/test-install-cmake-bigtable
@@ -269,5 +274,10 @@ RUN cmake --build cmake-out -- -j ${NCPU:-4}
 WORKDIR /home/build/test-submodule
 COPY ci/test-install /home/build/test-submodule
 COPY . /home/build/test-submodule/submodule/google-cloud-cpp
-RUN cmake -Hsubmodule -Bcmake-out
+# lets not rebuild from scratch if using packages
+#RUN cmake -Hsubmodule -Bcmake-out
+RUN cmake -Hsubmodule -Bcmake-out \
+    -DGOOGLE_CLOUD_CPP_DEPENDENCY_PROVIDER=package \
+    -DGOOGLE_CLOUD_CPP_GMOCK_PROVIDER=external \
+    -DBUILD_SHARED_LIBS=YES
 RUN cmake --build cmake-out -- -j ${NCPU:-4}
